@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { AdminLayout } from "@/components/AdminLayout";
 import {
+  Button,
   EmptyState,
   Field,
   FieldGrid,
@@ -10,7 +11,7 @@ import {
   Table,
   Td,
 } from "@/components/wire";
-import { contracts, getProperty, tenantName } from "@/data/mock";
+import { getProperty, tenantName, useAppStore } from "@/data/store";
 
 export const Route = createFileRoute("/imoveis/$id")({
   loader: ({ params }) => {
@@ -38,12 +39,21 @@ export const Route = createFileRoute("/imoveis/$id")({
 
 function PropertyDetail() {
   const { id } = Route.useParams();
+  const { contracts } = useAppStore();
   const p = getProperty(id)!;
   const vinculados = contracts.filter((c) => c.propertyId === id);
 
   return (
     <AdminLayout>
-      <PageHeader title={p.codigo} description={`${p.tipo} · ${p.cidade}/${p.uf}`} />
+      <PageHeader
+        title={p.codigo}
+        description={`${p.tipo} · ${p.cidade}/${p.uf}`}
+        actions={
+          <Link to="/imoveis/$id/editar" params={{ id }}>
+            <Button>Editar</Button>
+          </Link>
+        }
+      />
       <Panel title="Endereço">
         <FieldGrid>
           <Field label="CEP" value={p.cep} />

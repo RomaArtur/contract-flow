@@ -7,23 +7,15 @@ import {
   Input,
   LoadingState,
   PageHeader,
+  Pagination,
   Panel,
   Select,
   StatusBadge,
   Table,
   Td,
 } from "@/components/wire";
-import {
-  clients,
-  contracts,
-  getClient,
-  properties,
-  propertyLabel,
-  STATUS_LABEL,
-  STATUS_ORDER,
-  tenantName,
-  type ContractStatus,
-} from "@/data/mock";
+import { getClient, propertyLabel, tenantName, useAppStore } from "@/data/store";
+import { STATUS_LABEL, STATUS_ORDER, type ContractStatus } from "@/data/mock";
 
 type Search = { status?: string };
 
@@ -36,7 +28,8 @@ export const Route = createFileRoute("/contratos/")({
       { title: "Contratos | Gestão de Contratos de Locação" },
       {
         name: "description",
-        content: "Listagem de contratos de locação com busca e filtros por status, período, imóvel e parte.",
+        content:
+          "Listagem de contratos de locação com busca e filtros por status, período, imóvel e parte.",
       },
       { property: "og:title", content: "Contratos | Gestão de Contratos de Locação" },
       { property: "og:description", content: "Busque e filtre todos os contratos da carteira." },
@@ -46,6 +39,7 @@ export const Route = createFileRoute("/contratos/")({
 });
 
 function ContractList() {
+  const { clients, contracts, properties } = useAppStore();
   const { status: statusFromUrl } = Route.useSearch();
   const [loading, setLoading] = useState(true);
   const [busca, setBusca] = useState("");
@@ -53,6 +47,8 @@ function ContractList() {
   const [imovel, setImovel] = useState("TODOS");
   const [parte, setParte] = useState("TODOS");
   const [periodo, setPeriodo] = useState("TODOS");
+  const [page, setPage] = useState(1);
+  const pageSize = 5;
 
   useEffect(() => {
     const t = setTimeout(() => setLoading(false), 400);
@@ -79,6 +75,10 @@ function ContractList() {
       return false;
     return true;
   });
+
+  const pageCount = Math.max(1, Math.ceil(filtrados.length / pageSize));
+  const currentPage = Math.min(page, pageCount);
+  const pagina = filtrados.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   return (
     <AdminLayout>
@@ -162,7 +162,7 @@ function ContractList() {
               "",
             ]}
           >
-            {filtrados.map((c) => (
+            {pagina.map((c) => (
               <tr key={c.id} className="hover:bg-accent">
                 <Td>
                   <Link to="/contratos/$id" params={{ id: c.id }} className="font-medium underline">
@@ -171,7 +171,8 @@ function ContractList() {
                 </Td>
                 <Td className="text-muted-foreground">{propertyLabel(c.propertyId)}</Td>
                 <Td className="text-muted-foreground">
-                  {getClient(c.partes.find((p) => p.role === "LOCATARIO")?.clientId ?? "")?.nome ?? "—"}
+                  {getClient(c.partes.find((p) => p.role === "LOCATARIO")?.clientId ?? "")?.nome ??
+                    "—"}
                 </Td>
                 <Td>
                   <StatusBadge status={c.status} />
@@ -188,6 +189,7 @@ function ContractList() {
             ))}
           </Table>
         )}
+        <Pagination page={currentPage} pageCount={pageCount} onChange={setPage} />
       </Panel>
     </AdminLayout>
   );

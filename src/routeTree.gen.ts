@@ -10,16 +10,40 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuditoriaRouteImport } from './routes/auditoria'
+import { Route as AuditoriaIdRouteImport } from './routes/auditoria.$id'
 import { Route as ClientesIndexRouteImport } from './routes/clientes.index'
 import { Route as ClientesIdRouteImport } from './routes/clientes.$id'
+import { Route as ClientesNovoRouteImport } from './routes/clientes.novo'
 import { Route as ContratosIndexRouteImport } from './routes/contratos.index'
+import { Route as ContratosIdRouteImport } from './routes/contratos.$id'
+import { Route as ContratosNovoRouteImport } from './routes/contratos.novo'
 import { Route as ImoveisIndexRouteImport } from './routes/imoveis.index'
 import { Route as ImoveisIdRouteImport } from './routes/imoveis.$id'
+import { Route as ImoveisNovoRouteImport } from './routes/imoveis.novo'
+import { Route as PortalIndexRouteImport } from './routes/portal.index'
+import { Route as PortalIdRouteImport } from './routes/portal.$id'
+import { Route as ClientesIdEditarRouteImport } from './routes/clientes.$id.editar'
+import { Route as ContratosIdAnaliseRouteImport } from './routes/contratos.$id.analise'
+import { Route as ImoveisIdEditarRouteImport } from './routes/imoveis.$id.editar'
+import { Route as PortalIdAssinaturaRouteImport } from './routes/portal.$id.assinatura'
+import { Route as PortalIdConclusaoRouteImport } from './routes/portal.$id.conclusao'
+import { Route as PortalIdDocumentoRouteImport } from './routes/portal.$id.documento'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuditoriaRoute = AuditoriaRouteImport.update({
+  id: '/auditoria',
+  path: '/auditoria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditoriaIdRoute = AuditoriaIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AuditoriaRoute,
 } as any)
 const ClientesIndexRoute = ClientesIndexRouteImport.update({
   id: '/clientes/',
@@ -31,9 +55,24 @@ const ClientesIdRoute = ClientesIdRouteImport.update({
   path: '/clientes/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientesNovoRoute = ClientesNovoRouteImport.update({
+  id: '/clientes/novo',
+  path: '/clientes/novo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContratosIndexRoute = ContratosIndexRouteImport.update({
   id: '/contratos/',
   path: '/contratos/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContratosIdRoute = ContratosIdRouteImport.update({
+  id: '/contratos/$id',
+  path: '/contratos/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContratosNovoRoute = ContratosNovoRouteImport.update({
+  id: '/contratos/novo',
+  path: '/contratos/novo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImoveisIndexRoute = ImoveisIndexRouteImport.update({
@@ -46,66 +85,202 @@ const ImoveisIdRoute = ImoveisIdRouteImport.update({
   path: '/imoveis/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ImoveisNovoRoute = ImoveisNovoRouteImport.update({
+  id: '/imoveis/novo',
+  path: '/imoveis/novo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalIndexRoute = PortalIndexRouteImport.update({
+  id: '/portal/',
+  path: '/portal/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalIdRoute = PortalIdRouteImport.update({
+  id: '/portal/$id',
+  path: '/portal/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClientesIdEditarRoute = ClientesIdEditarRouteImport.update({
+  id: '/editar',
+  path: '/editar',
+  getParentRoute: () => ClientesIdRoute,
+} as any)
+const ContratosIdAnaliseRoute = ContratosIdAnaliseRouteImport.update({
+  id: '/analise',
+  path: '/analise',
+  getParentRoute: () => ContratosIdRoute,
+} as any)
+const ImoveisIdEditarRoute = ImoveisIdEditarRouteImport.update({
+  id: '/editar',
+  path: '/editar',
+  getParentRoute: () => ImoveisIdRoute,
+} as any)
+const PortalIdAssinaturaRoute = PortalIdAssinaturaRouteImport.update({
+  id: '/assinatura',
+  path: '/assinatura',
+  getParentRoute: () => PortalIdRoute,
+} as any)
+const PortalIdConclusaoRoute = PortalIdConclusaoRouteImport.update({
+  id: '/conclusao',
+  path: '/conclusao',
+  getParentRoute: () => PortalIdRoute,
+} as any)
+const PortalIdDocumentoRoute = PortalIdDocumentoRouteImport.update({
+  id: '/documento',
+  path: '/documento',
+  getParentRoute: () => PortalIdRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/clientes/$id': typeof ClientesIdRoute
-  '/imoveis/$id': typeof ImoveisIdRoute
+  '/auditoria': typeof AuditoriaRouteWithChildren
+  '/auditoria/$id': typeof AuditoriaIdRoute
+  '/clientes/$id': typeof ClientesIdRouteWithChildren
+  '/clientes/novo': typeof ClientesNovoRoute
+  '/contratos/$id': typeof ContratosIdRouteWithChildren
+  '/contratos/novo': typeof ContratosNovoRoute
+  '/imoveis/$id': typeof ImoveisIdRouteWithChildren
+  '/imoveis/novo': typeof ImoveisNovoRoute
+  '/portal/$id': typeof PortalIdRouteWithChildren
   '/clientes/': typeof ClientesIndexRoute
   '/contratos/': typeof ContratosIndexRoute
   '/imoveis/': typeof ImoveisIndexRoute
+  '/portal/': typeof PortalIndexRoute
+  '/clientes/$id/editar': typeof ClientesIdEditarRoute
+  '/contratos/$id/analise': typeof ContratosIdAnaliseRoute
+  '/imoveis/$id/editar': typeof ImoveisIdEditarRoute
+  '/portal/$id/assinatura': typeof PortalIdAssinaturaRoute
+  '/portal/$id/conclusao': typeof PortalIdConclusaoRoute
+  '/portal/$id/documento': typeof PortalIdDocumentoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/clientes/$id': typeof ClientesIdRoute
-  '/imoveis/$id': typeof ImoveisIdRoute
+  '/auditoria': typeof AuditoriaRouteWithChildren
+  '/auditoria/$id': typeof AuditoriaIdRoute
+  '/clientes/$id': typeof ClientesIdRouteWithChildren
+  '/clientes/novo': typeof ClientesNovoRoute
+  '/contratos/$id': typeof ContratosIdRouteWithChildren
+  '/contratos/novo': typeof ContratosNovoRoute
+  '/imoveis/$id': typeof ImoveisIdRouteWithChildren
+  '/imoveis/novo': typeof ImoveisNovoRoute
+  '/portal/$id': typeof PortalIdRouteWithChildren
   '/clientes': typeof ClientesIndexRoute
   '/contratos': typeof ContratosIndexRoute
   '/imoveis': typeof ImoveisIndexRoute
+  '/portal': typeof PortalIndexRoute
+  '/clientes/$id/editar': typeof ClientesIdEditarRoute
+  '/contratos/$id/analise': typeof ContratosIdAnaliseRoute
+  '/imoveis/$id/editar': typeof ImoveisIdEditarRoute
+  '/portal/$id/assinatura': typeof PortalIdAssinaturaRoute
+  '/portal/$id/conclusao': typeof PortalIdConclusaoRoute
+  '/portal/$id/documento': typeof PortalIdDocumentoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/clientes/$id': typeof ClientesIdRoute
-  '/imoveis/$id': typeof ImoveisIdRoute
+  '/auditoria': typeof AuditoriaRouteWithChildren
+  '/auditoria/$id': typeof AuditoriaIdRoute
+  '/clientes/$id': typeof ClientesIdRouteWithChildren
+  '/clientes/novo': typeof ClientesNovoRoute
+  '/contratos/$id': typeof ContratosIdRouteWithChildren
+  '/contratos/novo': typeof ContratosNovoRoute
+  '/imoveis/$id': typeof ImoveisIdRouteWithChildren
+  '/imoveis/novo': typeof ImoveisNovoRoute
+  '/portal/$id': typeof PortalIdRouteWithChildren
   '/clientes/': typeof ClientesIndexRoute
   '/contratos/': typeof ContratosIndexRoute
   '/imoveis/': typeof ImoveisIndexRoute
+  '/portal/': typeof PortalIndexRoute
+  '/clientes/$id/editar': typeof ClientesIdEditarRoute
+  '/contratos/$id/analise': typeof ContratosIdAnaliseRoute
+  '/imoveis/$id/editar': typeof ImoveisIdEditarRoute
+  '/portal/$id/assinatura': typeof PortalIdAssinaturaRoute
+  '/portal/$id/conclusao': typeof PortalIdConclusaoRoute
+  '/portal/$id/documento': typeof PortalIdDocumentoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auditoria'
+    | '/auditoria/$id'
     | '/clientes/$id'
+    | '/clientes/novo'
+    | '/contratos/$id'
+    | '/contratos/novo'
     | '/imoveis/$id'
+    | '/imoveis/novo'
+    | '/portal/$id'
     | '/clientes/'
     | '/contratos/'
     | '/imoveis/'
+    | '/portal/'
+    | '/clientes/$id/editar'
+    | '/contratos/$id/analise'
+    | '/imoveis/$id/editar'
+    | '/portal/$id/assinatura'
+    | '/portal/$id/conclusao'
+    | '/portal/$id/documento'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auditoria'
+    | '/auditoria/$id'
     | '/clientes/$id'
+    | '/clientes/novo'
+    | '/contratos/$id'
+    | '/contratos/novo'
     | '/imoveis/$id'
+    | '/imoveis/novo'
+    | '/portal/$id'
     | '/clientes'
     | '/contratos'
     | '/imoveis'
+    | '/portal'
+    | '/clientes/$id/editar'
+    | '/contratos/$id/analise'
+    | '/imoveis/$id/editar'
+    | '/portal/$id/assinatura'
+    | '/portal/$id/conclusao'
+    | '/portal/$id/documento'
   id:
     | '__root__'
     | '/'
+    | '/auditoria'
+    | '/auditoria/$id'
     | '/clientes/$id'
+    | '/clientes/novo'
+    | '/contratos/$id'
+    | '/contratos/novo'
     | '/imoveis/$id'
+    | '/imoveis/novo'
+    | '/portal/$id'
     | '/clientes/'
     | '/contratos/'
     | '/imoveis/'
+    | '/portal/'
+    | '/clientes/$id/editar'
+    | '/contratos/$id/analise'
+    | '/imoveis/$id/editar'
+    | '/portal/$id/assinatura'
+    | '/portal/$id/conclusao'
+    | '/portal/$id/documento'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ClientesIdRoute: typeof ClientesIdRoute
-  ImoveisIdRoute: typeof ImoveisIdRoute
+  AuditoriaRoute: typeof AuditoriaRouteWithChildren
+  ClientesIdRoute: typeof ClientesIdRouteWithChildren
+  ClientesNovoRoute: typeof ClientesNovoRoute
+  ContratosIdRoute: typeof ContratosIdRouteWithChildren
+  ContratosNovoRoute: typeof ContratosNovoRoute
+  ImoveisIdRoute: typeof ImoveisIdRouteWithChildren
+  ImoveisNovoRoute: typeof ImoveisNovoRoute
+  PortalIdRoute: typeof PortalIdRouteWithChildren
   ClientesIndexRoute: typeof ClientesIndexRoute
   ContratosIndexRoute: typeof ContratosIndexRoute
   ImoveisIndexRoute: typeof ImoveisIndexRoute
+  PortalIndexRoute: typeof PortalIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +291,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/auditoria': {
+      id: '/auditoria'
+      path: '/auditoria'
+      fullPath: '/auditoria'
+      preLoaderRoute: typeof AuditoriaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auditoria/$id': {
+      id: '/auditoria/$id'
+      path: '/$id'
+      fullPath: '/auditoria/$id'
+      preLoaderRoute: typeof AuditoriaIdRouteImport
+      parentRoute: typeof AuditoriaRoute
     }
     '/clientes/': {
       id: '/clientes/'
@@ -131,11 +320,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClientesIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/clientes/novo': {
+      id: '/clientes/novo'
+      path: '/clientes/novo'
+      fullPath: '/clientes/novo'
+      preLoaderRoute: typeof ClientesNovoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contratos/': {
       id: '/contratos/'
       path: '/contratos'
       fullPath: '/contratos/'
       preLoaderRoute: typeof ContratosIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contratos/$id': {
+      id: '/contratos/$id'
+      path: '/contratos/$id'
+      fullPath: '/contratos/$id'
+      preLoaderRoute: typeof ContratosIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contratos/novo': {
+      id: '/contratos/novo'
+      path: '/contratos/novo'
+      fullPath: '/contratos/novo'
+      preLoaderRoute: typeof ContratosNovoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/imoveis/': {
@@ -152,16 +362,150 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ImoveisIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/imoveis/novo': {
+      id: '/imoveis/novo'
+      path: '/imoveis/novo'
+      fullPath: '/imoveis/novo'
+      preLoaderRoute: typeof ImoveisNovoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal/': {
+      id: '/portal/'
+      path: '/portal'
+      fullPath: '/portal/'
+      preLoaderRoute: typeof PortalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal/$id': {
+      id: '/portal/$id'
+      path: '/portal/$id'
+      fullPath: '/portal/$id'
+      preLoaderRoute: typeof PortalIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clientes/$id/editar': {
+      id: '/clientes/$id/editar'
+      path: '/editar'
+      fullPath: '/clientes/$id/editar'
+      preLoaderRoute: typeof ClientesIdEditarRouteImport
+      parentRoute: typeof ClientesIdRoute
+    }
+    '/contratos/$id/analise': {
+      id: '/contratos/$id/analise'
+      path: '/analise'
+      fullPath: '/contratos/$id/analise'
+      preLoaderRoute: typeof ContratosIdAnaliseRouteImport
+      parentRoute: typeof ContratosIdRoute
+    }
+    '/imoveis/$id/editar': {
+      id: '/imoveis/$id/editar'
+      path: '/editar'
+      fullPath: '/imoveis/$id/editar'
+      preLoaderRoute: typeof ImoveisIdEditarRouteImport
+      parentRoute: typeof ImoveisIdRoute
+    }
+    '/portal/$id/assinatura': {
+      id: '/portal/$id/assinatura'
+      path: '/assinatura'
+      fullPath: '/portal/$id/assinatura'
+      preLoaderRoute: typeof PortalIdAssinaturaRouteImport
+      parentRoute: typeof PortalIdRoute
+    }
+    '/portal/$id/conclusao': {
+      id: '/portal/$id/conclusao'
+      path: '/conclusao'
+      fullPath: '/portal/$id/conclusao'
+      preLoaderRoute: typeof PortalIdConclusaoRouteImport
+      parentRoute: typeof PortalIdRoute
+    }
+    '/portal/$id/documento': {
+      id: '/portal/$id/documento'
+      path: '/documento'
+      fullPath: '/portal/$id/documento'
+      preLoaderRoute: typeof PortalIdDocumentoRouteImport
+      parentRoute: typeof PortalIdRoute
+    }
   }
 }
 
+interface AuditoriaRouteChildren {
+  AuditoriaIdRoute: typeof AuditoriaIdRoute
+}
+
+const AuditoriaRouteChildren: AuditoriaRouteChildren = {
+  AuditoriaIdRoute: AuditoriaIdRoute,
+}
+
+const AuditoriaRouteWithChildren = AuditoriaRoute._addFileChildren(
+  AuditoriaRouteChildren,
+)
+
+interface ClientesIdRouteChildren {
+  ClientesIdEditarRoute: typeof ClientesIdEditarRoute
+}
+
+const ClientesIdRouteChildren: ClientesIdRouteChildren = {
+  ClientesIdEditarRoute: ClientesIdEditarRoute,
+}
+
+const ClientesIdRouteWithChildren = ClientesIdRoute._addFileChildren(
+  ClientesIdRouteChildren,
+)
+
+interface ContratosIdRouteChildren {
+  ContratosIdAnaliseRoute: typeof ContratosIdAnaliseRoute
+}
+
+const ContratosIdRouteChildren: ContratosIdRouteChildren = {
+  ContratosIdAnaliseRoute: ContratosIdAnaliseRoute,
+}
+
+const ContratosIdRouteWithChildren = ContratosIdRoute._addFileChildren(
+  ContratosIdRouteChildren,
+)
+
+interface ImoveisIdRouteChildren {
+  ImoveisIdEditarRoute: typeof ImoveisIdEditarRoute
+}
+
+const ImoveisIdRouteChildren: ImoveisIdRouteChildren = {
+  ImoveisIdEditarRoute: ImoveisIdEditarRoute,
+}
+
+const ImoveisIdRouteWithChildren = ImoveisIdRoute._addFileChildren(
+  ImoveisIdRouteChildren,
+)
+
+interface PortalIdRouteChildren {
+  PortalIdAssinaturaRoute: typeof PortalIdAssinaturaRoute
+  PortalIdConclusaoRoute: typeof PortalIdConclusaoRoute
+  PortalIdDocumentoRoute: typeof PortalIdDocumentoRoute
+}
+
+const PortalIdRouteChildren: PortalIdRouteChildren = {
+  PortalIdAssinaturaRoute: PortalIdAssinaturaRoute,
+  PortalIdConclusaoRoute: PortalIdConclusaoRoute,
+  PortalIdDocumentoRoute: PortalIdDocumentoRoute,
+}
+
+const PortalIdRouteWithChildren = PortalIdRoute._addFileChildren(
+  PortalIdRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ClientesIdRoute: ClientesIdRoute,
-  ImoveisIdRoute: ImoveisIdRoute,
+  AuditoriaRoute: AuditoriaRouteWithChildren,
+  ClientesIdRoute: ClientesIdRouteWithChildren,
+  ClientesNovoRoute: ClientesNovoRoute,
+  ContratosIdRoute: ContratosIdRouteWithChildren,
+  ContratosNovoRoute: ContratosNovoRoute,
+  ImoveisIdRoute: ImoveisIdRouteWithChildren,
+  ImoveisNovoRoute: ImoveisNovoRoute,
+  PortalIdRoute: PortalIdRouteWithChildren,
   ClientesIndexRoute: ClientesIndexRoute,
   ContratosIndexRoute: ContratosIndexRoute,
   ImoveisIndexRoute: ImoveisIndexRoute,
+  PortalIndexRoute: PortalIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

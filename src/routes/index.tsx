@@ -1,14 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { AdminLayout } from "@/components/AdminLayout";
 import { PageHeader, Panel, StatusBadge, Table, Td, Button } from "@/components/wire";
-import {
-  contracts,
-  propertyLabel,
-  STATUS_LABEL,
-  STATUS_ORDER,
-  tenantName,
-  type ContractStatus,
-} from "@/data/mock";
+import { STATUS_LABEL, STATUS_ORDER, type ContractStatus } from "@/data/mock";
+import { propertyLabel, tenantName, useAppStore } from "@/data/store";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,6 +33,7 @@ const focusStatuses: ContractStatus[] = [
 ];
 
 function Dashboard() {
+  const { contracts } = useAppStore();
   const pendencias = contracts.filter((c) => c.pendencia);
 
   return (
@@ -119,8 +114,11 @@ function Dashboard() {
       </Panel>
 
       <p className="text-xs text-muted-foreground">
-        Ciclo de vida: {STATUS_ORDER.slice(0, 7).map((s) => STATUS_LABEL[s]).join(" → ")}. Estados
-        adicionais: Cancelado, Recusado.
+        Ciclo de vida:{" "}
+        {STATUS_ORDER.slice(0, 7)
+          .map((s) => STATUS_LABEL[s])
+          .join(" → ")}
+        . Estados adicionais: Cancelado, Recusado.
       </p>
     </AdminLayout>
   );

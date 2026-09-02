@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { AdminLayout } from "@/components/AdminLayout";
 import {
+  Button,
   EmptyState,
   Field,
   FieldGrid,
@@ -10,7 +11,8 @@ import {
   Table,
   Td,
 } from "@/components/wire";
-import { contracts, getClient, propertyLabel, ROLE_LABEL } from "@/data/mock";
+import { ROLE_LABEL } from "@/data/mock";
+import { getClient, propertyLabel, useAppStore } from "@/data/store";
 
 export const Route = createFileRoute("/clientes/$id")({
   loader: ({ params }) => {
@@ -35,12 +37,21 @@ export const Route = createFileRoute("/clientes/$id")({
 
 function ClientDetail() {
   const { id } = Route.useParams();
+  const { contracts } = useAppStore();
   const client = getClient(id)!;
   const vinculados = contracts.filter((c) => c.partes.some((p) => p.clientId === id));
 
   return (
     <AdminLayout>
-      <PageHeader title={client.nome} description={`Cliente ${client.tipo} · ${client.documento}`} />
+      <PageHeader
+        title={client.nome}
+        description={`Cliente ${client.tipo} · ${client.documento}`}
+        actions={
+          <Link to="/clientes/$id/editar" params={{ id }}>
+            <Button>Editar</Button>
+          </Link>
+        }
+      />
       <Panel title="Dados cadastrais">
         <FieldGrid>
           <Field label="Nome" value={client.nome} />

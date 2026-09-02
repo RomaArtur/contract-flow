@@ -34,12 +34,7 @@ export const STATUS_LABEL: Record<ContractStatus, string> = {
 };
 
 export type PartyRole =
-  | "LOCADOR"
-  | "LOCATARIO"
-  | "FIADOR"
-  | "CONJUGE_FIADOR"
-  | "TESTEMUNHA"
-  | "REPRESENTANTE_LEGAL";
+  "LOCADOR" | "LOCATARIO" | "FIADOR" | "CONJUGE_FIADOR" | "TESTEMUNHA" | "REPRESENTANTE_LEGAL";
 
 export const ROLE_LABEL: Record<PartyRole, string> = {
   LOCADOR: "Locador",
@@ -149,23 +144,121 @@ export type Contract = {
 };
 
 export const clients: Client[] = [
-  { id: "c1", nome: "Marina Alves Ribeiro", documento: "123.456.789-01", email: "marina.alves@email.com", telefone: "(11) 98888-1010", tipo: "PF" },
-  { id: "c2", nome: "Construtora Vale Norte LTDA", documento: "12.345.678/0001-90", email: "contato@valenorte.com.br", telefone: "(11) 3344-5566", tipo: "PJ" },
-  { id: "c3", nome: "Rogério Campos Lima", documento: "987.654.321-00", email: "rogerio.lima@email.com", telefone: "(11) 97777-2020", tipo: "PF" },
-  { id: "c4", nome: "Helena Souza Campos", documento: "456.123.789-22", email: "helena.campos@email.com", telefone: "(11) 96666-3030", tipo: "PF" },
-  { id: "c5", nome: "Paulo Henrique Dias", documento: "321.654.987-11", email: "paulo.dias@email.com", telefone: "(11) 95555-4040", tipo: "PF" },
-  { id: "c6", nome: "Juliana Prado Martins", documento: "741.852.963-33", email: "juliana.prado@email.com", telefone: "(11) 94444-5050", tipo: "PF" },
-  { id: "c7", nome: "Eduardo Nakamura", documento: "159.357.486-44", email: "eduardo.nakamura@email.com", telefone: "(11) 93333-6060", tipo: "PF" },
+  {
+    id: "c1",
+    nome: "Marina Alves Ribeiro",
+    documento: "123.456.789-01",
+    email: "marina.alves@email.com",
+    telefone: "(11) 98888-1010",
+    tipo: "PF",
+  },
+  {
+    id: "c2",
+    nome: "Construtora Vale Norte LTDA",
+    documento: "12.345.678/0001-90",
+    email: "contato@valenorte.com.br",
+    telefone: "(11) 3344-5566",
+    tipo: "PJ",
+  },
+  {
+    id: "c3",
+    nome: "Rogério Campos Lima",
+    documento: "987.654.321-00",
+    email: "rogerio.lima@email.com",
+    telefone: "(11) 97777-2020",
+    tipo: "PF",
+  },
+  {
+    id: "c4",
+    nome: "Helena Souza Campos",
+    documento: "456.123.789-22",
+    email: "helena.campos@email.com",
+    telefone: "(11) 96666-3030",
+    tipo: "PF",
+  },
+  {
+    id: "c5",
+    nome: "Paulo Henrique Dias",
+    documento: "321.654.987-11",
+    email: "paulo.dias@email.com",
+    telefone: "(11) 95555-4040",
+    tipo: "PF",
+  },
+  {
+    id: "c6",
+    nome: "Juliana Prado Martins",
+    documento: "741.852.963-33",
+    email: "juliana.prado@email.com",
+    telefone: "(11) 94444-5050",
+    tipo: "PF",
+  },
+  {
+    id: "c7",
+    nome: "Eduardo Nakamura",
+    documento: "159.357.486-44",
+    email: "eduardo.nakamura@email.com",
+    telefone: "(11) 93333-6060",
+    tipo: "PF",
+  },
 ];
 
 export const properties: Property[] = [
-  { id: "p1", codigo: "IM-0001", cep: "01310-100", logradouro: "Av. Paulista", numero: "1500", complemento: "Apto 82", bairro: "Bela Vista", cidade: "São Paulo", uf: "SP", tipo: "Apartamento", area: "78 m²" },
-  { id: "p2", codigo: "IM-0002", cep: "04543-011", logradouro: "Rua Olimpíadas", numero: "205", bairro: "Vila Olímpia", cidade: "São Paulo", uf: "SP", tipo: "Sala comercial", area: "120 m²" },
-  { id: "p3", codigo: "IM-0003", cep: "05413-020", logradouro: "Rua Harmonia", numero: "78", bairro: "Vila Madalena", cidade: "São Paulo", uf: "SP", tipo: "Casa", area: "160 m²" },
-  { id: "p4", codigo: "IM-0004", cep: "09015-000", logradouro: "Rua Sete de Setembro", numero: "44", complemento: "Loja 2", bairro: "Centro", cidade: "Santo André", uf: "SP", tipo: "Loja", area: "95 m²" },
+  {
+    id: "p1",
+    codigo: "IM-0001",
+    cep: "01310-100",
+    logradouro: "Av. Paulista",
+    numero: "1500",
+    complemento: "Apto 82",
+    bairro: "Bela Vista",
+    cidade: "São Paulo",
+    uf: "SP",
+    tipo: "Apartamento",
+    area: "78 m²",
+  },
+  {
+    id: "p2",
+    codigo: "IM-0002",
+    cep: "04543-011",
+    logradouro: "Rua Olimpíadas",
+    numero: "205",
+    bairro: "Vila Olímpia",
+    cidade: "São Paulo",
+    uf: "SP",
+    tipo: "Sala comercial",
+    area: "120 m²",
+  },
+  {
+    id: "p3",
+    codigo: "IM-0003",
+    cep: "05413-020",
+    logradouro: "Rua Harmonia",
+    numero: "78",
+    bairro: "Vila Madalena",
+    cidade: "São Paulo",
+    uf: "SP",
+    tipo: "Casa",
+    area: "160 m²",
+  },
+  {
+    id: "p4",
+    codigo: "IM-0004",
+    cep: "09015-000",
+    logradouro: "Rua Sete de Setembro",
+    numero: "44",
+    complemento: "Loja 2",
+    bairro: "Centro",
+    cidade: "Santo André",
+    uf: "SP",
+    tipo: "Loja",
+    area: "95 m²",
+  },
 ];
 
-function condicoes(aluguel: string, extras?: Partial<Contract["condicoes"]>): Contract["condicoes"] {
+function condicoes(
+  aluguel: string,
+  extras?: Partial<Contract["condicoes"]>,
+): Contract["condicoes"] {
   return {
     aluguel,
     vencimento: "Dia 10",
@@ -202,9 +295,27 @@ export const contracts: Contract[] = [
       { clientId: "c7", role: "REPRESENTANTE_LEGAL" },
     ],
     documentos: [
-      { versao: "v3", geradoEm: "30/08/2026 14:02", status: "Vigente", hash: "9f2c4ab1d77e0b53", motivo: "Ajuste do índice de reajuste" },
-      { versao: "v2", geradoEm: "27/08/2026 09:41", status: "Substituída", hash: "31ba77c0e2f19d48", motivo: "Inclusão do cônjuge do fiador" },
-      { versao: "v1", geradoEm: "24/08/2026 16:18", status: "Substituída", hash: "0ac8d1f43b6e2290", motivo: "Geração inicial" },
+      {
+        versao: "v3",
+        geradoEm: "30/08/2026 14:02",
+        status: "Vigente",
+        hash: "9f2c4ab1d77e0b53",
+        motivo: "Ajuste do índice de reajuste",
+      },
+      {
+        versao: "v2",
+        geradoEm: "27/08/2026 09:41",
+        status: "Substituída",
+        hash: "31ba77c0e2f19d48",
+        motivo: "Inclusão do cônjuge do fiador",
+      },
+      {
+        versao: "v1",
+        geradoEm: "24/08/2026 16:18",
+        status: "Substituída",
+        hash: "0ac8d1f43b6e2290",
+        motivo: "Geração inicial",
+      },
     ],
     assinaturas: [
       { clientId: "c2", role: "LOCADOR", status: "ASSINADO", assinadoEm: "30/08/2026 17:05" },
@@ -217,11 +328,33 @@ export const contracts: Contract[] = [
     historico: [
       { data: "24/08/2026 16:10", titulo: "Contrato criado", autor: "Corretor — Ana Duarte" },
       { data: "24/08/2026 16:18", titulo: "Documento gerado (v1)", autor: "Sistema" },
-      { data: "26/08/2026 11:30", titulo: "Submetido para análise", autor: "Corretor — Ana Duarte" },
-      { data: "27/08/2026 09:41", titulo: "Documento gerado (v2)", autor: "Sistema", detalhe: "Inclusão do cônjuge do fiador" },
-      { data: "29/08/2026 15:22", titulo: "Aprovado na análise", autor: "Administrador — Carlos Melo" },
-      { data: "30/08/2026 14:02", titulo: "Documento gerado (v3)", autor: "Sistema", detalhe: "Ajuste do índice de reajuste" },
-      { data: "30/08/2026 14:20", titulo: "Enviado para assinatura", autor: "Administrador — Carlos Melo" },
+      {
+        data: "26/08/2026 11:30",
+        titulo: "Submetido para análise",
+        autor: "Corretor — Ana Duarte",
+      },
+      {
+        data: "27/08/2026 09:41",
+        titulo: "Documento gerado (v2)",
+        autor: "Sistema",
+        detalhe: "Inclusão do cônjuge do fiador",
+      },
+      {
+        data: "29/08/2026 15:22",
+        titulo: "Aprovado na análise",
+        autor: "Administrador — Carlos Melo",
+      },
+      {
+        data: "30/08/2026 14:02",
+        titulo: "Documento gerado (v3)",
+        autor: "Sistema",
+        detalhe: "Ajuste do índice de reajuste",
+      },
+      {
+        data: "30/08/2026 14:20",
+        titulo: "Enviado para assinatura",
+        autor: "Administrador — Carlos Melo",
+      },
       { data: "30/08/2026 17:05", titulo: "Locador assinou", autor: "Construtora Vale Norte LTDA" },
       { data: "31/08/2026 09:12", titulo: "Fiador assinou", autor: "Rogério Campos Lima" },
     ],
@@ -236,7 +369,12 @@ export const contracts: Contract[] = [
     termino: "14/09/2028",
     atualizadoEm: "28/08/2026 10:05",
     garantia: { tipo: "SEGURO_FIANCA", detalhe: "Apólice Porto Seguro nº 8871-2 (em validação)" },
-    condicoes: condicoes("R$ 9.800,00", { prazo: "24 meses", indice: "IPCA", condominio: "R$ 1.450,00", iptu: "R$ 520,00" }),
+    condicoes: condicoes("R$ 9.800,00", {
+      prazo: "24 meses",
+      indice: "IPCA",
+      condominio: "R$ 1.450,00",
+      iptu: "R$ 520,00",
+    }),
     partes: [
       { clientId: "c2", role: "LOCADOR" },
       { clientId: "c6", role: "LOCATARIO" },
@@ -244,7 +382,13 @@ export const contracts: Contract[] = [
       { clientId: "c7", role: "TESTEMUNHA" },
     ],
     documentos: [
-      { versao: "v1", geradoEm: "27/08/2026 18:00", status: "Em análise", hash: "5b1e990ac7d4f632", motivo: "Geração inicial" },
+      {
+        versao: "v1",
+        geradoEm: "27/08/2026 18:00",
+        status: "Em análise",
+        hash: "5b1e990ac7d4f632",
+        motivo: "Geração inicial",
+      },
     ],
     assinaturas: [
       { clientId: "c2", role: "LOCADOR", status: "NAO_ENVIADO" },
@@ -255,7 +399,11 @@ export const contracts: Contract[] = [
     historico: [
       { data: "27/08/2026 17:40", titulo: "Contrato criado", autor: "Corretor — Ana Duarte" },
       { data: "27/08/2026 18:00", titulo: "Documento gerado (v1)", autor: "Sistema" },
-      { data: "28/08/2026 10:05", titulo: "Submetido para análise", autor: "Corretor — Ana Duarte" },
+      {
+        data: "28/08/2026 10:05",
+        titulo: "Submetido para análise",
+        autor: "Corretor — Ana Duarte",
+      },
     ],
     pendencia: "Parado em análise há 5 dias",
   },
@@ -267,7 +415,10 @@ export const contracts: Contract[] = [
     inicio: "01/03/2025",
     termino: "30/09/2026",
     atualizadoEm: "02/03/2025 08:30",
-    garantia: { tipo: "CAUCAO_DINHEIRO", detalhe: "R$ 15.000,00 depositados em conta poupança vinculada" },
+    garantia: {
+      tipo: "CAUCAO_DINHEIRO",
+      detalhe: "R$ 15.000,00 depositados em conta poupança vinculada",
+    },
     condicoes: condicoes("R$ 5.000,00", { prazo: "18 meses", vencimento: "Dia 5" }),
     partes: [
       { clientId: "c3", role: "LOCADOR" },
@@ -276,8 +427,20 @@ export const contracts: Contract[] = [
       { clientId: "c6", role: "TESTEMUNHA" },
     ],
     documentos: [
-      { versao: "v2", geradoEm: "01/03/2025 12:00", status: "Vigente", hash: "aa41d0c8e7b32f19", motivo: "Documento final assinado" },
-      { versao: "v1", geradoEm: "20/02/2025 09:15", status: "Substituída", hash: "77c2ba09e5d81346", motivo: "Geração inicial" },
+      {
+        versao: "v2",
+        geradoEm: "01/03/2025 12:00",
+        status: "Vigente",
+        hash: "aa41d0c8e7b32f19",
+        motivo: "Documento final assinado",
+      },
+      {
+        versao: "v1",
+        geradoEm: "20/02/2025 09:15",
+        status: "Substituída",
+        hash: "77c2ba09e5d81346",
+        motivo: "Geração inicial",
+      },
     ],
     assinaturas: [
       { clientId: "c3", role: "LOCADOR", status: "ASSINADO", assinadoEm: "28/02/2025 10:00" },
@@ -288,7 +451,11 @@ export const contracts: Contract[] = [
     historico: [
       { data: "18/02/2025 14:00", titulo: "Contrato criado", autor: "Corretor — Ana Duarte" },
       { data: "20/02/2025 09:15", titulo: "Documento gerado (v1)", autor: "Sistema" },
-      { data: "22/02/2025 11:00", titulo: "Aprovado na análise", autor: "Administrador — Carlos Melo" },
+      {
+        data: "22/02/2025 11:00",
+        titulo: "Aprovado na análise",
+        autor: "Administrador — Carlos Melo",
+      },
       { data: "25/02/2025 09:00", titulo: "Enviado para assinatura", autor: "Sistema" },
       { data: "28/02/2025 16:20", titulo: "Contrato assinado", autor: "Sistema" },
       { data: "01/03/2025 12:00", titulo: "Contrato ativado", autor: "Sistema" },
@@ -304,14 +471,20 @@ export const contracts: Contract[] = [
     termino: "30/09/2029",
     atualizadoEm: "01/09/2026 19:44",
     garantia: { tipo: "SEM_GARANTIA", detalhe: "Sem garantia definida" },
-    condicoes: condicoes("R$ 3.100,00", { prazo: "36 meses", condominio: "Não há", iptu: "R$ 140,00" }),
+    condicoes: condicoes("R$ 3.100,00", {
+      prazo: "36 meses",
+      condominio: "Não há",
+      iptu: "R$ 140,00",
+    }),
     partes: [
       { clientId: "c2", role: "LOCADOR" },
       { clientId: "c7", role: "LOCATARIO" },
     ],
     documentos: [],
     assinaturas: [],
-    historico: [{ data: "01/09/2026 19:44", titulo: "Contrato criado", autor: "Corretor — Ana Duarte" }],
+    historico: [
+      { data: "01/09/2026 19:44", titulo: "Contrato criado", autor: "Corretor — Ana Duarte" },
+    ],
     pendencia: "Rascunho incompleto — faltam garantia e testemunhas",
   },
   {
@@ -322,7 +495,10 @@ export const contracts: Contract[] = [
     inicio: "10/09/2026",
     termino: "09/09/2028",
     atualizadoEm: "30/08/2026 16:10",
-    garantia: { tipo: "CESSAO_FIDUCIARIA", detalhe: "Cessão fiduciária de aplicação financeira — R$ 22.000,00" },
+    garantia: {
+      tipo: "CESSAO_FIDUCIARIA",
+      detalhe: "Cessão fiduciária de aplicação financeira — R$ 22.000,00",
+    },
     condicoes: condicoes("R$ 4.500,00", { prazo: "24 meses" }),
     partes: [
       { clientId: "c3", role: "LOCADOR" },
@@ -331,7 +507,13 @@ export const contracts: Contract[] = [
       { clientId: "c5", role: "TESTEMUNHA" },
     ],
     documentos: [
-      { versao: "v1", geradoEm: "30/08/2026 16:10", status: "Vigente", hash: "e01f7b3c92da4856", motivo: "Geração inicial" },
+      {
+        versao: "v1",
+        geradoEm: "30/08/2026 16:10",
+        status: "Vigente",
+        hash: "e01f7b3c92da4856",
+        motivo: "Geração inicial",
+      },
     ],
     assinaturas: [
       { clientId: "c3", role: "LOCADOR", status: "NAO_ENVIADO" },
@@ -341,8 +523,16 @@ export const contracts: Contract[] = [
     ],
     historico: [
       { data: "28/08/2026 10:00", titulo: "Contrato criado", autor: "Corretor — Ana Duarte" },
-      { data: "29/08/2026 09:30", titulo: "Submetido para análise", autor: "Corretor — Ana Duarte" },
-      { data: "30/08/2026 15:50", titulo: "Aprovado na análise", autor: "Administrador — Carlos Melo" },
+      {
+        data: "29/08/2026 09:30",
+        titulo: "Submetido para análise",
+        autor: "Corretor — Ana Duarte",
+      },
+      {
+        data: "30/08/2026 15:50",
+        titulo: "Aprovado na análise",
+        autor: "Administrador — Carlos Melo",
+      },
       { data: "30/08/2026 16:10", titulo: "Documento gerado (v1)", autor: "Sistema" },
     ],
     pendencia: "Pronto para envio de assinaturas",
@@ -355,7 +545,10 @@ export const contracts: Contract[] = [
     inicio: "05/09/2026",
     termino: "04/09/2028",
     atualizadoEm: "29/08/2026 12:12",
-    garantia: { tipo: "CAUCAO_BEM", detalhe: "Veículo — Toyota Corolla 2022, avaliado em R$ 98.000,00" },
+    garantia: {
+      tipo: "CAUCAO_BEM",
+      detalhe: "Veículo — Toyota Corolla 2022, avaliado em R$ 98.000,00",
+    },
     condicoes: condicoes("R$ 2.700,00", { prazo: "24 meses" }),
     partes: [
       { clientId: "c2", role: "LOCADOR" },
@@ -364,8 +557,20 @@ export const contracts: Contract[] = [
       { clientId: "c7", role: "TESTEMUNHA" },
     ],
     documentos: [
-      { versao: "v2", geradoEm: "29/08/2026 12:12", status: "Vigente", hash: "b93c012ffa7e6d41", motivo: "Documento final assinado" },
-      { versao: "v1", geradoEm: "22/08/2026 08:55", status: "Substituída", hash: "10de44b7c9a02f38", motivo: "Geração inicial" },
+      {
+        versao: "v2",
+        geradoEm: "29/08/2026 12:12",
+        status: "Vigente",
+        hash: "b93c012ffa7e6d41",
+        motivo: "Documento final assinado",
+      },
+      {
+        versao: "v1",
+        geradoEm: "22/08/2026 08:55",
+        status: "Substituída",
+        hash: "10de44b7c9a02f38",
+        motivo: "Geração inicial",
+      },
     ],
     assinaturas: [
       { clientId: "c2", role: "LOCADOR", status: "ASSINADO", assinadoEm: "28/08/2026 14:00" },
@@ -376,7 +581,11 @@ export const contracts: Contract[] = [
     historico: [
       { data: "20/08/2026 09:00", titulo: "Contrato criado", autor: "Corretor — Ana Duarte" },
       { data: "22/08/2026 08:55", titulo: "Documento gerado (v1)", autor: "Sistema" },
-      { data: "25/08/2026 10:00", titulo: "Aprovado na análise", autor: "Administrador — Carlos Melo" },
+      {
+        data: "25/08/2026 10:00",
+        titulo: "Aprovado na análise",
+        autor: "Administrador — Carlos Melo",
+      },
       { data: "26/08/2026 09:00", titulo: "Enviado para assinatura", autor: "Sistema" },
       { data: "29/08/2026 12:12", titulo: "Contrato assinado", autor: "Sistema" },
     ],
@@ -398,7 +607,13 @@ export const contracts: Contract[] = [
       { clientId: "c5", role: "FIADOR" },
     ],
     documentos: [
-      { versao: "v1", geradoEm: "20/12/2022 10:00", status: "Arquivada", hash: "cc71f0a3b8e51d92", motivo: "Geração inicial" },
+      {
+        versao: "v1",
+        geradoEm: "20/12/2022 10:00",
+        status: "Arquivada",
+        hash: "cc71f0a3b8e51d92",
+        motivo: "Geração inicial",
+      },
     ],
     assinaturas: [
       { clientId: "c3", role: "LOCADOR", status: "ASSINADO", assinadoEm: "28/12/2022 10:00" },
@@ -408,7 +623,11 @@ export const contracts: Contract[] = [
     historico: [
       { data: "18/12/2022 09:00", titulo: "Contrato criado", autor: "Corretor — Ana Duarte" },
       { data: "01/01/2023 00:00", titulo: "Contrato ativado", autor: "Sistema" },
-      { data: "02/01/2025 09:00", titulo: "Contrato encerrado", autor: "Administrador — Carlos Melo" },
+      {
+        data: "02/01/2025 09:00",
+        titulo: "Contrato encerrado",
+        autor: "Administrador — Carlos Melo",
+      },
     ],
   },
   {
@@ -426,7 +645,13 @@ export const contracts: Contract[] = [
       { clientId: "c4", role: "LOCATARIO" },
     ],
     documentos: [
-      { versao: "v1", geradoEm: "05/08/2026 11:00", status: "Arquivada", hash: "4f8ab2c6019de375", motivo: "Geração inicial" },
+      {
+        versao: "v1",
+        geradoEm: "05/08/2026 11:00",
+        status: "Arquivada",
+        hash: "4f8ab2c6019de375",
+        motivo: "Geração inicial",
+      },
     ],
     assinaturas: [
       { clientId: "c2", role: "LOCADOR", status: "ASSINADO", assinadoEm: "10/08/2026 09:00" },
@@ -435,7 +660,11 @@ export const contracts: Contract[] = [
     historico: [
       { data: "04/08/2026 10:00", titulo: "Contrato criado", autor: "Corretor — Ana Duarte" },
       { data: "05/08/2026 11:00", titulo: "Documento gerado (v1)", autor: "Sistema" },
-      { data: "12/08/2026 17:30", titulo: "Assinatura recusada pelo locatário", autor: "Helena Souza Campos" },
+      {
+        data: "12/08/2026 17:30",
+        titulo: "Assinatura recusada pelo locatário",
+        autor: "Helena Souza Campos",
+      },
     ],
   },
 ];

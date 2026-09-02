@@ -1,22 +1,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { AdminLayout } from "@/components/AdminLayout";
-import { EmptyState, Input, PageHeader, Panel, Table, Td } from "@/components/wire";
-import { contracts, properties } from "@/data/mock";
+import { Button, EmptyState, Input, PageHeader, Panel, Table, Td } from "@/components/wire";
+import { useAppStore } from "@/data/store";
 
 export const Route = createFileRoute("/imoveis/")({
   head: () => ({
     meta: [
       { title: "Imóveis | Gestão de Contratos de Locação" },
-      { name: "description", content: "Cadastro de imóveis disponíveis para contratos de locação." },
+      {
+        name: "description",
+        content: "Cadastro de imóveis disponíveis para contratos de locação.",
+      },
       { property: "og:title", content: "Imóveis | Gestão de Contratos de Locação" },
-      { property: "og:description", content: "Endereços, tipos e contratos vinculados a cada imóvel." },
+      {
+        property: "og:description",
+        content: "Endereços, tipos e contratos vinculados a cada imóvel.",
+      },
     ],
   }),
   component: PropertiesPage,
 });
 
 function PropertiesPage() {
+  const { contracts, properties } = useAppStore();
   const [busca, setBusca] = useState("");
   const filtrados = properties.filter((p) =>
     `${p.codigo} ${p.logradouro} ${p.bairro} ${p.cidade} ${p.cep}`
@@ -26,10 +33,23 @@ function PropertiesPage() {
 
   return (
     <AdminLayout>
-      <PageHeader title="Imóveis" description="Imóveis cadastrados e seus contratos." />
+      <PageHeader
+        title="Imóveis"
+        description="Imóveis cadastrados e seus contratos."
+        actions={
+          <Link to="/imoveis/novo">
+            <Button variant="primary">Novo imóvel</Button>
+          </Link>
+        }
+      />
       <Panel title="Busca">
         <div className="max-w-md">
-          <Input label="Busca" placeholder="Código, endereço ou CEP" value={busca} onChange={setBusca} />
+          <Input
+            label="Busca"
+            placeholder="Código, endereço ou CEP"
+            value={busca}
+            onChange={setBusca}
+          />
         </div>
       </Panel>
       <Panel title={`Resultados (${filtrados.length})`}>

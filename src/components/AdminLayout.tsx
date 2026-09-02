@@ -58,7 +58,9 @@ export function AdminLayout({ children }: { children: ReactNode }) {
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
                 activeProps={{ className: "border border-foreground px-2 py-1 text-xs" }}
-                inactiveProps={{ className: "border border-border px-2 py-1 text-xs text-muted-foreground" }}
+                inactiveProps={{
+                  className: "border border-border px-2 py-1 text-xs text-muted-foreground",
+                }}
               >
                 {item.label}
               </Link>

@@ -14,9 +14,7 @@ export function PageHeader({
     <header className="flex flex-wrap items-start justify-between gap-3 border-b border-border pb-4">
       <div>
         <h1 className="text-xl font-semibold text-foreground">{title}</h1>
-        {description ? (
-          <p className="mt-1 text-sm text-muted-foreground">{description}</p>
-        ) : null}
+        {description ? <p className="mt-1 text-sm text-muted-foreground">{description}</p> : null}
       </div>
       {actions ? <div className="flex flex-wrap gap-2">{actions}</div> : null}
     </header>
@@ -106,13 +104,7 @@ export function Tag({ children }: { children: ReactNode }) {
   );
 }
 
-export function Field({
-  label,
-  value,
-}: {
-  label: string;
-  value: ReactNode;
-}) {
+export function Field({ label, value }: { label: string; value: ReactNode }) {
   return (
     <div className="min-w-0">
       <dt className="text-[11px] uppercase tracking-wide text-muted-foreground">{label}</dt>
@@ -156,6 +148,31 @@ export function Input({
   );
 }
 
+export function Textarea({
+  label,
+  placeholder,
+  value,
+  onChange,
+}: {
+  label: string;
+  placeholder?: string;
+  value?: string;
+  onChange?: (v: string) => void;
+}) {
+  return (
+    <label className="block">
+      <span className="text-[11px] uppercase tracking-wide text-muted-foreground">{label}</span>
+      <textarea
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange?.(e.target.value)}
+        rows={3}
+        className="mt-1 w-full border border-input bg-background px-2.5 py-1.5 text-sm text-foreground outline-none focus:border-ring"
+      />
+    </label>
+  );
+}
+
 export function Select({
   label,
   value,
@@ -189,9 +206,7 @@ export function EmptyState({ title, description }: { title: string; description?
   return (
     <div className="border border-dashed border-border px-6 py-10 text-center">
       <p className="text-sm font-medium text-foreground">{title}</p>
-      {description ? (
-        <p className="mt-1 text-sm text-muted-foreground">{description}</p>
-      ) : null}
+      {description ? <p className="mt-1 text-sm text-muted-foreground">{description}</p> : null}
     </div>
   );
 }
@@ -282,7 +297,9 @@ export function Table({ head, children }: { head: string[]; children: ReactNode 
 }
 
 export function Td({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <td className={`border-b border-border px-3 py-2 align-middle ${className}`}>{children}</td>;
+  return (
+    <td className={`border-b border-border px-3 py-2 align-middle ${className}`}>{children}</td>
+  );
 }
 
 export function Timeline({
@@ -305,6 +322,111 @@ export function Timeline({
         </li>
       ))}
     </ol>
+  );
+}
+
+export function SuccessState({ title, description }: { title: string; description?: string }) {
+  return (
+    <div className="border border-foreground px-6 py-10 text-center">
+      <p className="text-sm font-medium text-foreground">{title}</p>
+      {description ? <p className="mt-1 text-sm text-muted-foreground">{description}</p> : null}
+    </div>
+  );
+}
+
+export function WireTabs({
+  tabs,
+  current,
+  onSelect,
+}: {
+  tabs: { id: string; label: string }[];
+  current: string;
+  onSelect: (id: string) => void;
+}) {
+  return (
+    <div className="flex flex-wrap gap-1 border-b border-border">
+      {tabs.map((tab) => (
+        <button
+          key={tab.id}
+          type="button"
+          onClick={() => onSelect(tab.id)}
+          className={`border border-b-0 px-3 py-1.5 text-sm ${
+            current === tab.id
+              ? "border-border bg-card font-medium text-foreground"
+              : "border-transparent text-muted-foreground hover:bg-accent"
+          }`}
+        >
+          {tab.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export function RadioCards<T extends string>({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: T;
+  onChange: (v: T) => void;
+  options: { value: T; label: string; hint?: string }[];
+}) {
+  return (
+    <fieldset>
+      <legend className="text-[11px] uppercase tracking-wide text-muted-foreground">{label}</legend>
+      <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+        {options.map((o) => (
+          <label
+            key={o.value}
+            className={`flex cursor-pointer items-start gap-2 border px-3 py-2 text-sm ${
+              value === o.value ? "border-foreground bg-muted" : "border-border hover:bg-accent"
+            }`}
+          >
+            <input
+              type="radio"
+              className="mt-0.5"
+              name={label}
+              checked={value === o.value}
+              onChange={() => onChange(o.value)}
+            />
+            <span>
+              <span className="block font-medium">{o.label}</span>
+              {o.hint ? <span className="text-xs text-muted-foreground">{o.hint}</span> : null}
+            </span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
+
+export function Pagination({
+  page,
+  pageCount,
+  onChange,
+}: {
+  page: number;
+  pageCount: number;
+  onChange: (page: number) => void;
+}) {
+  if (pageCount <= 1) return null;
+  return (
+    <div className="mt-3 flex flex-wrap items-center justify-between gap-2 text-sm">
+      <p className="text-muted-foreground">
+        Página {page} de {pageCount}
+      </p>
+      <div className="flex gap-2">
+        <Button disabled={page <= 1} onClick={() => onChange(page - 1)}>
+          Anterior
+        </Button>
+        <Button disabled={page >= pageCount} onClick={() => onChange(page + 1)}>
+          Próxima
+        </Button>
+      </div>
+    </div>
   );
 }
 

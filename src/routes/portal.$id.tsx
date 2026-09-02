@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { PortalLayout } from "@/components/PortalLayout";
+import { ChildOutlet } from "@/components/ChildOutlet";
 import {
   Button,
   Callout,
@@ -42,30 +43,32 @@ function PortalContract() {
     contract.status === "ENCERRADO";
 
   return (
-    <PortalLayout>
-      <PageHeader title={contract.numero} description="Informações básicas do seu contrato." />
-      <StatusBadge status={contract.status} />
-      <Panel title="Resumo">
-        <FieldGrid cols={2}>
-          <Field label="Imóvel" value={propertyLabel(contract.propertyId)} />
-          <Field label="Locatário" value={tenantName(contract)} />
-          <Field label="Início" value={contract.inicio} />
-          <Field label="Término" value={contract.termino} />
-          <Field label="Aluguel" value={contract.condicoes.aluguel} />
-          <Field label="Sua assinatura" value={mySig?.status ?? "Não solicitada"} />
-        </FieldGrid>
-      </Panel>
-      {canSign ? <Callout>Há uma assinatura pendente neste contrato.</Callout> : null}
-      <div className="flex flex-wrap gap-2">
-        <Link to="/portal/$id/documento" params={{ id }}>
-          <Button variant="primary">Visualizar contrato</Button>
-        </Link>
-        {signed ? (
-          <Link to="/portal/$id/conclusao" params={{ id }}>
-            <Button>Documento final</Button>
+    <ChildOutlet>
+      <PortalLayout>
+        <PageHeader title={contract.numero} description="Informações básicas do seu contrato." />
+        <StatusBadge status={contract.status} />
+        <Panel title="Resumo">
+          <FieldGrid cols={2}>
+            <Field label="Imóvel" value={propertyLabel(contract.propertyId)} />
+            <Field label="Locatário" value={tenantName(contract)} />
+            <Field label="Início" value={contract.inicio} />
+            <Field label="Término" value={contract.termino} />
+            <Field label="Aluguel" value={contract.condicoes.aluguel} />
+            <Field label="Sua assinatura" value={mySig?.status ?? "Não solicitada"} />
+          </FieldGrid>
+        </Panel>
+        {canSign ? <Callout>Há uma assinatura pendente neste contrato.</Callout> : null}
+        <div className="flex flex-wrap gap-2">
+          <Link to="/portal/$id/documento" params={{ id }}>
+            <Button variant="primary">Visualizar contrato</Button>
           </Link>
-        ) : null}
-      </div>
-    </PortalLayout>
+          {signed ? (
+            <Link to="/portal/$id/conclusao" params={{ id }}>
+              <Button>Documento final</Button>
+            </Link>
+          ) : null}
+        </div>
+      </PortalLayout>
+    </ChildOutlet>
   );
 }
